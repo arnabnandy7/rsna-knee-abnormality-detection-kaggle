@@ -1,0 +1,18 @@
+{
+  "id": "arnabnandy2/rsna-knee-densenet121-raptor-5fold",
+  "title": "RSNA Knee - DenseNet121 Raptor 5-Fold",
+  "code_file": "train_densenet121_raptor_5fold.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "barun2104/rsna-knee-stratified-folds-and-llm-soft-labels",
+    "barun2104/rsna-knee-mri-processed-3d-volumes"
+  ],
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ]
+}

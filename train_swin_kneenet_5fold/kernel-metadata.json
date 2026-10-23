@@ -1,0 +1,19 @@
+{
+  "id": "arnabnandy2/rsna-knee-swin-tiny-kneenet-5-fold-training",
+  "title": "RSNA Knee - Swin-Tiny KneeNet 5-Fold Training",
+  "code_file": "train_swin_kneenet_5fold.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "goodpjw2008/rsna-knee-2-5d-convnext-reader",
+    "barun2104/rsna-knee-stratified-folds-and-llm-soft-labels",
+    "barun2104/rsna-knee-mri-processed-3d-volumes"
+  ],
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ]
+}

@@ -1,0 +1,56 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.dylib
+*.dll
+
+# Virtual Environments
+.venv/
+venv/
+env/
+_own_env/
+*_env/
+ENV/
+
+# Scratch & temporary workspace directories
+scratch/
+tmp/
+temp/
+*.tmp
+*.bak
+*_backup.ipynb
+
+# Logs & profiling
+log/
+logs/
+*.log
+
+# Competition datasets & large archives
+data/
+*.zip
+*.tar
+*.gz
+*.parquet
+*_checkpoint.csv
+
+# Model weights & training checkpoints
+*.pt
+*.pth
+*.bin
+*.onnx
+*.h5
+*.ckpt
+weights/
+checkpoints/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+*-checkpoint.ipynb
+
+# Tool & OS caches
+graphify-out/
+.cache/
+.DS_Store
+Thumbs.db

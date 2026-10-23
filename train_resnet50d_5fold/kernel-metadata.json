@@ -1,0 +1,18 @@
+{
+  "id": "arnabnandy2/rsna-knee-resnet50d-2-5d-5-fold-training",
+  "title": "RSNA Knee - ResNet50d 2.5D 5-Fold Training",
+  "code_file": "train_resnet50d_5fold.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "barun2104/rsna-knee-stratified-folds-and-llm-soft-labels",
+    "barun2104/rsna-knee-mri-processed-3d-volumes"
+  ],
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ]
+}

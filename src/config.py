@@ -1,3 +1,10 @@
+"""
+Configuration module for RSNA Knee Abnormality Detection.
+
+Centralizes paths, hyperparameters, model choices, training constants,
+and target label definitions for both local development and Kaggle environments.
+"""
+
 import os
 from pathlib import Path
 

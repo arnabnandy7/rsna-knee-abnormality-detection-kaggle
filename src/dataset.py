@@ -1,3 +1,11 @@
+"""
+Dataset & Data Loading module for RSNA Knee Abnormality Detection.
+
+Handles reading DICOM MRI slices, applying min-max pixel normalization,
+sampling key representative slices across multi-series knee studies,
+tokenizing radiology reports, and packaging inputs for multimodal training.
+"""
+
 import os
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple

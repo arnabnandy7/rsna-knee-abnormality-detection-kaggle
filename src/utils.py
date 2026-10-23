@@ -1,3 +1,10 @@
+"""
+Utility functions for RSNA Knee Abnormality Detection.
+
+Provides deterministic seed configuration, multi-class Macro-AUC evaluation,
+and stratified K-Fold cross-validation partitioning.
+"""
+
 import os
 import random
 import numpy as np

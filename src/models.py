@@ -1,3 +1,11 @@
+"""
+Deep Learning Architectures for RSNA Knee Abnormality Detection.
+
+Implements late/joint multimodal fusion combining a 2.5D vision backbone
+(timm) aggregating multi-slice MRI representations and a transformer text encoder
+(Hugging Face) extracting semantic embeddings from clinical reports.
+"""
+
 import torch
 import torch.nn as nn
 import timm

@@ -1,6 +1,16 @@
+"""
+RSNA Knee Abnormality Detection - 5-Fold Cross-Validation Training Pipeline.
+
+Trains the multimodal fusion model (2D slice aggregator + text encoder)
+across stratified folds using Binary Cross-Entropy with Logits loss
+and Automatic Mixed Precision (AMP). Saves the best model checkpoint
+per fold evaluated by Macro-averaged ROC-AUC.
+"""
+
 import argparse
 import gc
 from pathlib import Path
+from typing import Tuple
 
 import numpy as np
 import pandas as pd
@@ -16,7 +26,28 @@ from src.models import RSNAMultimodalModel
 from src.utils import seed_everything, calculate_macro_auc, create_folds
 
 
-def train_epoch(model, dataloader, optimizer, criterion, scaler, device):
+def train_epoch(
+    model: nn.Module,
+    dataloader: DataLoader,
+    optimizer: torch.optim.Optimizer,
+    criterion: nn.Module,
+    scaler: torch.cuda.amp.GradScaler,
+    device: str,
+) -> float:
+    """
+    Executes a single training epoch across batches.
+
+    Args:
+        model: Multimodal PyTorch neural network.
+        dataloader: Training DataLoader yielding image batches and tokenized text.
+        optimizer: Optimization algorithm (e.g. AdamW).
+        criterion: Loss function (BCEWithLogitsLoss).
+        scaler: GradScaler for Automatic Mixed Precision (AMP).
+        device: Target execution device ('cuda' or 'cpu').
+
+    Returns:
+        float: Average training loss across all samples in the epoch.
+    """
     model.train()
     running_loss = 0.0
 
@@ -41,7 +72,27 @@ def train_epoch(model, dataloader, optimizer, criterion, scaler, device):
     return running_loss / len(dataloader.dataset)
 
 
-def validate(model, dataloader, criterion, device):
+def validate(
+    model: nn.Module,
+    dataloader: DataLoader,
+    criterion: nn.Module,
+    device: str,
+) -> Tuple[float, float, np.ndarray]:
+    """
+    Evaluates the model on validation data without gradient calculation.
+
+    Args:
+        model: Multimodal PyTorch neural network.
+        dataloader: Validation DataLoader.
+        criterion: Evaluation loss function.
+        device: Target execution device ('cuda' or 'cpu').
+
+    Returns:
+        Tuple[float, float, np.ndarray]:
+            - val_loss: Average validation loss.
+            - val_auc: Macro-averaged ROC AUC across 12 target classes.
+            - all_preds: Sigmoid predicted probabilities of shape (N, 12).
+    """
     model.eval()
     running_loss = 0.0
     all_preds = []
@@ -71,6 +122,9 @@ def validate(model, dataloader, criterion, device):
 
 
 def main():
+    """
+    Main training routine executing 5-fold cross-validation.
+    """
     seed_everything(config.SEED)
     print(f"Using device: {config.DEVICE}")
 

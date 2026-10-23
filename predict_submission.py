@@ -1,3 +1,12 @@
+"""
+RSNA Knee Abnormality Detection - Test Inference & Submission Generator.
+
+Loads saved 5-fold multimodal model checkpoints, processes test DICOM series
+and clinical reports, runs test-time inference with mixed precision,
+averages predicted probabilities across folds, and formats the output into
+a competition-compliant submission.csv.
+"""
+
 import gc
 from pathlib import Path
 
@@ -13,7 +22,11 @@ from src.dataset import KneeMRIDataset
 from src.models import RSNAMultimodalModel
 
 
-def main():
+def generate_predictions():
+    """
+    Executes ensemble inference across all trained fold checkpoints
+    and writes predictions to submission.csv.
+    """
     print("Generating submission predictions...")
     device = config.DEVICE
 
@@ -70,6 +83,10 @@ def main():
     sub_df.to_csv(submission_path, index=False)
     print(f"Successfully generated {submission_path} with shape {sub_df.shape}")
     print(sub_df.head())
+
+
+def main():
+    generate_predictions()
 
 
 if __name__ == "__main__":

@@ -34,12 +34,8 @@ A deep learning framework and competition solution for the **RSNA Knee Abnormali
 ```
 ├── bend-the-knee-to-the-dinosaurs.ipynb # Flagship competition submission notebook (LB 0.958)
 ├── rsna_knee_multimodal_baseline.ipynb  # End-to-end multimodal baseline pipeline
-├── train.py                             # Modular 5-Fold cross-validation script
+├── train.py                             # Modular 5-Fold cross-validation entrypoint
 ├── predict_submission.py                # Ensemble inference & submission generator
-├── _fastread.py                         # High-performance single-pass DICOM read engine
-├── extract_labels_llm.py                # LLM radiology report label extraction pipeline
-├── extract_labels_v2.py                 # Rule-based radiology report parser
-├── llm_labels.csv                       # Pre-extracted report annotations
 ├── requirements.txt                     # Project dependencies
 ├── kernel-metadata.json                 # Kaggle CLI deployment configuration
 ├── src/                                 # Modular framework package
@@ -47,16 +43,26 @@ A deep learning framework and competition solution for the **RSNA Knee Abnormali
 │   ├── dataset.py                       # DICOM slice sampler & tokenized dataset loader
 │   ├── models.py                        # Multimodal vision-language fusion architecture
 │   └── utils.py                         # Macro-AUC evaluator, seeding, and fold creation
-├── own_src/                             # Standalone inference modules
+├── own_src/                             # Standalone inference engine modules
 │   ├── infer.py                         # Fast test-time inference pipeline
 │   ├── knee.py                          # Neural backbone definitions
 │   └── preprocess.py                    # Windowing, cropping, and slice normalization
+├── model_zoo/                           # 56 model training configurations + scorers
+│   ├── train_<backbone>_5fold/          # Isolated 5-fold training setups ready for Kaggle push
+│   └── scorer_slot2/                    # Live inference scoring staging
 ├── notebooks/                           # Organized Jupyter notebook workspace
 │   ├── ensembles/                       # 10-model, 15-model, and 20-model blend notebooks
 │   ├── trainers/                        # DINOv2, RadImageNet head, and MRNet pretrainers
 │   ├── experiments/                     # Iterative Speedy Raptors (v16-v45) notebooks
 │   └── utils/                           # Weight downloaders and offline assets
-└── train_<model>_5fold/                 # 56 model training configurations (Model Zoo)
+├── scripts/                             # Data preparation & utility scripts
+│   ├── extract_labels_llm.py            # LLM radiology report label extraction
+│   ├── extract_labels_v2.py             # Rule-based radiology report parser
+│   ├── _fastread.py                     # High-performance DICOM read benchmark engine
+│   └── download_dinov2.py               # Pretrained foundation weight fetcher
+├── annotations/                         # Processed annotations & pseudo-labels
+│   └── llm_labels.csv                   # Continuous extracted target probabilities
+└── benchmarks/                          # Leaderboard verification scores & receipts
 ```
 
 ---

@@ -24,8 +24,8 @@ except ImportError:
 OLLAMA_URL = "http://localhost:11434/api/generate"
 MODEL = "qwen2.5:1.5b"  # 1.5B is much faster on CPU and doesn't throttle
 TRAIN_CSV = Path("data/train.csv")
-OUTPUT_CSV = Path("llm_labels.csv")
-CHECKPOINT_CSV = Path("llm_labels_checkpoint.csv")
+OUTPUT_CSV = Path("annotations/llm_labels.csv")
+CHECKPOINT_CSV = Path("annotations/llm_labels_checkpoint.csv")
 
 TARGET_COLS = [
     'ACL', 'MCL', 'Medial_Meniscus', 'Lateral_Meniscus',

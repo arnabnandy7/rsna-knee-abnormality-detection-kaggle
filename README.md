@@ -20,7 +20,7 @@ A deep learning framework and competition solution for the **RSNA Knee Abnormali
 ## Solution Highlights & Top Model
 
 ### Flagship Submission: `bend-the-knee-to-the-dinosaurs.ipynb`
-* **Public LB Score**: **0.958** (Top ~3% / Rank 195 of 6,077)
+* **Public LB Score**: **0.958+**
 * **Architecture & Strategy**:
   1. **Multi-Resolution CoAtNet**: Dual-scale 384px and 224px feature representations capturing fine cartilage tears and global joint alignments.
   2. **Flip Test-Time Augmentation (TTA)**: Bilateral MRI symmetry exploited via horizontal slice mirroring on compact R6 models.
